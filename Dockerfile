@@ -1,4 +1,5 @@
-FROM alpine:3.14
+FROM alpine:3.15
+
 LABEL Maintainer="Tim de Pater <code@trafex.nl>"
 LABEL Description="Lightweight container with Nginx 1.20 & PHP 7 based on Alpine Linux."
 
@@ -10,7 +11,7 @@ RUN apk --no-cache add \
   php7-ctype \
   php7-curl \
   php7-dom \
-  php-fpm \
+  php7-fpm \
   php7-gd \
   php7-intl \
   php7-json \
@@ -24,9 +25,6 @@ RUN apk --no-cache add \
   php7-xmlreader \
   php7-zlib \
   supervisor
-
-# Create symlink so programs depending on `php` still function
-RUN ln -s /usr/bin/php /usr/local/bin/php
 
 # Configure nginx
 COPY config/nginx.conf /etc/nginx/nginx.conf
